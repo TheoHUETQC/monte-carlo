@@ -18,7 +18,7 @@ This repository provides a clear and commented implementation of several classic
 1. **Estimation of π**
 2. **Numerical integration**
 3. **Random walk simulation**
-4. *(Optional)* Metropolis algorithm
+4. **Metropolis algorithm**
 
 ---
 
@@ -52,7 +52,7 @@ pip install numpy matplotlib
 │    └── metropolis_demo.py        # Simple Metropolis algorithm
 │
 ├── 📂 plots/
-│    └── (graphs and convergence plots)
+│    └── montecarlo_pi.png         # distibution's graph
 │
 └── 📜 README.md
 ```
