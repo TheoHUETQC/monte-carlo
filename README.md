@@ -37,17 +37,16 @@ The estimated error decreases as $` \frac{1}{\sqrt{N}} `$, making Monte Carlo pa
 
 ## Phase Transition in the 2D Ising Model
 
-In 2D, the Ising model got a phase transition in Tc.
-I simulate this Phase transtion, this is my result, where we can see Tc in the magnetisation and susceptibility curve:
+In 2D, the Ising model underwent a phase transition at Tc.I simulated this phase transition, and here are my results, where Tc can be seen in the magnetization and susceptibility curves:
 
-- magnetisation : ![magnetization curve](Ising2d_L20_magnetization_curve.png)
-- susceptibility : ![susceptibility curve](Ising2d_L20_susceptibility_curve.png)
+- magnetisation : ![magnetization curve](/plot/ising_model/Ising2d_L20_magnetization_curve.png)
+- susceptibility : ![susceptibility curve](/plot/ising_model/Ising2d_L20_susceptibility_curve.png)
 
-I aslo take model's config close to Tc, before and after the phase transition:
+I also take the configuration close to Tc, before and after the phase transition:
 
-- T = 1.5 : ![magnetization curve](Ising2d_config_T1.5.png)
-- T = 2.304 : ![magnetization curve](Ising2d_config_T2.304.png)
-- T = 3.5 : ![magnetization curve](Ising2d_config_T3.5.png)
+- T = 1.5 (Before): ![magnetization curve](/plot/ising_model/Ising2d_config_T1.5.png)
+- T = 2.304 (close to Tc): ![magnetization curve](/plot/ising_model/Ising2d_config_T2.304.png)
+- T = 3.5 (After): ![magnetization curve](/plot/ising_model/Ising2d_config_T3.5.png)
 
 ---
 
