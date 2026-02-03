@@ -44,9 +44,4 @@ def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : li
             ax[i].axvline(x=Ti,color='green',linestyle='--', alpha = 0.2)
 
     plt.tight_layout()
-    plt.show()
-
-"""
-    previous_Tn = n-T//2 if n-T//2 > 0 else 0
-    next_Tn = n+T//2 if n+T//2 < N else N"""
-    
+    plt.show()   
