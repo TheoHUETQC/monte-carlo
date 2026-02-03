@@ -11,13 +11,16 @@ def time_averaged_values(y : list) -> list :
   N = len(y)
   T = N//10
   for n in range(N) :
-    previous_Tn = n-T//2 if n-T//2 > 0 else 0
-    next_Tn = n+T//2 if n+T//2 < N else N
-
-    y_average.append(np.mean(y[previous_Tn:next_Tn]))
+    if n < T :
+       R = n 
+    elif n + T > N :
+       R = N - n 
+    else :
+       R = T
+    y_average.append(np.mean(y[n - R: n + R]))
   return y_average
 
-def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : list =[], show_y1_average : bool = False, show_y2_average : bool = False, title1 : str ="plot 1", title2 : str ="plot 2", Tt : list = []) -> None :
+def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : list =[], show_y1_average : bool = False, show_y2_average : bool = False, title1 : str ="plot 1", title2 : str ="plot 2", x_label : str = "x", Tt : list = []) -> None :
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     ax = [ax1, ax2]
     y = [y1, y2]
@@ -33,12 +36,17 @@ def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : li
             ax[i].plot(x, time_averaged_values(y[i]), color='orange',label='numeric average')
         ax[i].set_title(title[i])
         ax[i].set_ylabel(title[i])
-        ax[i].set_xlim(0, x[-1])
+        ax[i].set_xlim(x[0], x[-1])
         ax[i].legend()
-        ax[i].set_xlabel('time step')
+        ax[i].set_xlabel(x_label)
         ax[i].grid()
         for Ti in Tt :
             ax[i].axvline(x=Ti,color='green',linestyle='--', alpha = 0.2)
 
     plt.tight_layout()
     plt.show()
+
+"""
+    previous_Tn = n-T//2 if n-T//2 > 0 else 0
+    next_Tn = n+T//2 if n+T//2 < N else N"""
+    
