@@ -1,26 +1,27 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def variance(x : np.array) -> float:
-  mean_x = np.mean(x)
-  mean_x2 = np.mean(x*x)
-  return mean_x2 - mean_x**2
-
 def time_averaged_values(y : list) -> list :
   y_average = []
   N = len(y)
-  T = N//10
+  T = N//20
   for n in range(N) :
-    if n < T :
-       R = n 
-    elif n + T > N :
-       R = N - n 
+    if n == 0 :
+      y_average_temp = y[0]
+    elif n == N-1:
+      y_average_temp = y[-1]
     else :
-       R = T
-    y_average.append(np.mean(y[n - R: n + R]))
+      if n < T :
+        R = n
+      elif n + T > N :
+        R = N - n
+      else :
+        R = T
+      y_average_temp = np.mean(y[n - R: n + R])
+    y_average.append(y_average_temp)
   return y_average
 
-def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : list =[], show_y1_average : bool = False, show_y2_average : bool = False, title1 : str ="plot 1", title2 : str ="plot 2", x_label : str = "x", Tt : list = []) -> None :
+def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : list =[], show_y1_average : bool = False, show_y2_average : bool = False, title1 : str ="plot 1", title2 : str ="plot 2", x_label : str = "x") -> None :
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     ax = [ax1, ax2]
     y = [y1, y2]
@@ -40,8 +41,9 @@ def plot2(x : list, y1 : list, y2 : list, y1_theoric : list =[], y2_theoric : li
         ax[i].legend()
         ax[i].set_xlabel(x_label)
         ax[i].grid()
-        for Ti in Tt :
-            ax[i].axvline(x=Ti,color='green',linestyle='--', alpha = 0.2)
 
     plt.tight_layout()
     plt.show()   
+
+def error(numeric_value : list, theoric_value : list) -> float:
+   return np.mean(np.abs(numeric_value - theoric_value))
