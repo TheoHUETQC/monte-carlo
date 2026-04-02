@@ -1,41 +1,35 @@
-# 🧲 Monte Carlo Methods
+# Monte Carlo Physics Simulations
 
-A small educational project exploring **Monte Carlo simulations** in Python, from simple random sampling to physical stochastic models.  
-Designed as a foundation for later extensions to **quantum Monte Carlo** techniques.
+This repository gathers several numerical simulation projects applied to statistical and quantum physics, based on Monte Carlo methods. These implementations were carried out as part of my Master's degree in Physics.
 
-In this project, I wanted to revisit what I learned in my Monte Carlo course during my first year of master's studies, particularly its use in simulating the Ising model.
+## Academic Context
 
----
+This repository compiles work from two years of study and two distinct courses:
 
-## Overview
-
-Monte Carlo methods are a class of algorithms that use **random sampling** to estimate numerical results.  
-They are widely used in:
-- Statistical physics
-- Numerical integration
-- Random processes and diffusion
-- Bayesian inference and optimization
-
-This repository provides a clear and commented implementation of several classical examples:
-1. **Estimation of π**
-2. **Numerical integration**
-3. **Random walk simulation**
-4. **Metropolis algorithm**
-5. **simulation of a phase transition in the 2D Ising model**
+* **Master 1 - Monte Carlo Methods (Prof. Torcini):**
+    * **Grade:** 20 / 20
+    * **Content:** Introductory scripts in the `basics/` folder and the study of the 2D Ising model phase transition (`02_ising_2d_phase_transition.ipynb`).
+* **Master 2 - Quantum Monte Carlo (Prof. Honecker):**
+    * **Grade:** [en attente de la note] / 20
+    * **Content:** Advanced projects on the 1D Ising model (`01_ising_1d_metropolis.ipynb`), the Diffusion QMC method (`03_diffusion_qmc_ground_state.ipynb`), and the Stochastic Series Expansion method (`04_sse_heisenberg_chain.ipynb`).
 
 ---
 
-## Theoretical Background
+## Projects and Key Results
 
-Monte Carlo methods rely on the **Law of Large Numbers**:  
+Here is an overview of the four main projects. For each model, the physical theory is detailed in the corresponding notebook, and the Monte Carlo algorithms have been implemented in Python to extract fundamental thermodynamic and quantum observables.
 
-When the number of random samples increases, the statistical average converges to the expected value.
+### 1. 1D Ising Model: Metropolis Algorithm
+**File:** `notebooks/01_ising_1d_metropolis.ipynb`
 
-The estimated error decreases as $` \frac{1}{\sqrt{N}} `$, making Monte Carlo particularly robust for high-dimensional problems.
+The goal of this project is to simulate the one-dimensional Ising model. Theory predicts the absence of a phase transition at finite temperature. The simulations allow us to visualize the behavior of energy, magnetization, magnetic susceptibility, and specific heat as a function of temperature, confirming a phase change only at $T=0$.
 
----
+![1D Ising plots](/plot/ising_model/ising1d_plots.png)
 
-## Phase Transition in the 2D Ising Model
+### 2. 2D Ising Model: Phase Transition
+**File:** `notebooks/02_ising_2d_phase_transition.ipynb`
+
+Unlike the one-dimensional case, the 2D Ising model exhibits a ferromagnetic-paramagnetic phase transition. This notebook highlights this transition by observing the divergence of the susceptibility and specific heat, allowing us to identify the critical temperature $T_c$.
 
 In 2D, the Ising model underwent a phase transition at Tc.I simulated this phase transition, and here are my results, where Tc can be seen in the magnetization and susceptibility curves:
 
@@ -48,47 +42,17 @@ I also take the configuration close to Tc, before and after the phase transition
 - T = 2.304 (close to Tc): ![magnetization curve](/plot/ising_model/Ising2d_config_T2.304.png)
 - T = 3.5 (After): ![magnetization curve](/plot/ising_model/Ising2d_config_T3.5.png)
 
----
+### 3. Diffusion Quantum Monte Carlo (DQMC)
+**File:** `notebooks/03_diffusion_qmc_ground_state.ipynb`
 
-## Installation & Dependencies  
+This project explores the Diffusion QMC method to estimate the ground state energy. By diffusing "walkers" that represent the probability density, we reconstruct the ground state wave function for three distinct potentials: harmonic, cubic anharmonic, and quartic anharmonic. The ground state energies are accurately recovered using an imaginary time extrapolation ($\Delta \tau$).
 
-Ensure you have Python **3.7+** and install the required libraries:  
+- Harmonic potential case : ![harmonic potential density walker](/plot/diffusion_harmonic_walker_density.png)
+- Extrapolation of the grounds states : ![Extrapolation of the grounds states](/plot/diffusion_extrapolation_gs.png)
 
-```bash
-pip install numpy matplotlib
-```
+### 4. Stochastic Series Expansion (SSE): Heisenberg Chain
+**File:** `notebooks/04_sse_heisenberg_chain.ipynb`
 
----
+This project uses the advanced Stochastic Series Expansion method to simulate a spin chain with the Heisenberg model (ferromagnetic and antiferromagnetic cases). The notebook details the calculation of magnetization, energy, susceptibility, and specific heat for various temperatures down to near absolute zero, thus recovering the ground state energy.
 
-## Project Structure
-```
-📂 monte-carlo/
-│
-├── 📂 src/
-│    ├── montecarlo_pi.py          # Estimate π by random sampling
-│    ├── montecarlo_integral.py    # Integrate arbitrary functions
-│    ├── random_walk.py            # Simulate Brownian motion
-│    ├── metropolis_demo.py        # Simple Metropolis algorithm
-│    └── ising_model.py            # phase transition on the 2D Ising Model
-│
-├── 📂 plots/
-│    ├── 📂 ising_model/           # all graph. create in ising_model.py wich whow phase transition
-│    │
-│    ├── random_walk_1D.png           # graph from random_walk.py 
-│    └── montecarlo_pi.png         # distibution's graph from montecarlo_pi.py 
-│
-└── 📜 README.md
-```
-
----
-
-## Contributions & Contact
-
-Contributions are welcome! You can:
-
-- Fork the repository and improve the simulations.
-
-- Submit a pull request for enhancements or bug fixes.
-
-- Open an issue for discussions or questions.
-
+- Antiferromagnetic case result : ![Antiferromagnetic case](/plot/Heisenberg_antiferro_case.png)
